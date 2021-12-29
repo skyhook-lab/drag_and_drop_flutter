@@ -10,7 +10,7 @@ abstract class DragAndDropFlutterPlatform extends PlatformInterface {
 
   static final Object _token = Object();
 
-  static late DragAndDropFlutterPlatform _instance = _NullDragAndDropPlatform();
+  static late DragAndDropFlutterPlatform _instance = NullDragAndDropPlatform();
 
   /// The default instance of [DragAndDropFlutterPlatform] to use.
   ///
@@ -35,7 +35,9 @@ abstract class DragAndDropFlutterPlatform extends PlatformInterface {
   });
 }
 
-class _NullDragAndDropPlatform extends DragAndDropFlutterPlatform {
+/// An implementation of [DragAndDropFlutterPlatform] that does nothing.
+class NullDragAndDropPlatform extends DragAndDropFlutterPlatform {
+  /// Returns [child] without handling drag and drop operations.
   @override
   Widget buildDropArea({
     DragData? dragData,
@@ -68,15 +70,15 @@ typedef DropCallback = void Function(DragData data);
 /// The type of a drag and drop operation.
 enum DragDropType {
   /// The content is meant to be copied to the target.
-  Copy,
+  copy,
 
   /// A link should be created from the target to the source content.
-  Link,
+  link,
 
   /// The content should be moved from the source to the target.
   ///
   /// The source should handle the deletion of its copy.
-  Move,
+  move,
 }
 
 /// Data for a drag and drop operation.
@@ -106,21 +108,19 @@ enum DragDropType {
 class DragData {
   /// Create [DragData] with a list of [DataTransferItem].
   DragData({
-    bool readonly = false,
+    this.readonly = false,
     this.type,
     List<DataTransferItem>? items,
-  })  : readonly = readonly,
-        _items = items ?? (readonly ? const [] : []);
+  })  : _items = items ?? (readonly ? const [] : []);
 
   /// Create [DragData] with a key-value map of [String] data.
   ///
   /// To include file or directory references, use [new DragData].
   DragData.fromMap({
-    bool readonly = false,
+    this.readonly = false,
     this.type,
     Map<String, String>? items,
-  })  : readonly = readonly,
-        _items = items?.entries
+  })  : _items = items?.entries
                 .map((e) => DataTransferItem.data(type: e.key, data: e.value))
                 .toList() ??
             (readonly ? const [] : []);

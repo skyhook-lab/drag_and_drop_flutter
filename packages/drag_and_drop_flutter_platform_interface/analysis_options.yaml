@@ -3,7 +3,7 @@ include: package:flutter_lints/flutter.yaml
 linter:
   # https://dart-lang.github.io/linter/lints/index.html.
   rules:
-  - package_api_docs
+  - package_api_docs: true
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options

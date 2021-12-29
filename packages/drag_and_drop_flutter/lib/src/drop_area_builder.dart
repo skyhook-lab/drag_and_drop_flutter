@@ -12,6 +12,7 @@ typedef DropAreaWidgetBuilder = Widget Function(
 /// A Widget that rebuilds when data is dragged over it, and provides a callback
 /// for handling dropped data.
 class DropAreaBuilder extends StatefulWidget {
+  /// Create a [DropAreaBuilder].
   const DropAreaBuilder({
     Key? key,
     required this.builder,

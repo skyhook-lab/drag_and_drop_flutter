@@ -1,6 +1,6 @@
 name: drag_and_drop_flutter_platform_interface
 description: A common platform interface for the drag_and_drop_flutter plugin.
-version: 0.1.0
+version: 0.2.0
 homepage: https://github.com/Jjagg/drag_and_drop_flutter/tree/main/packages/drag_and_drop_flutter_platform_interface
 repository: https://github.com/Jjagg/drag_and_drop_flutter/tree/main/packages/drag_and_drop_flutter_platform_interface
 

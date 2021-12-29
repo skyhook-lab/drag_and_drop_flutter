@@ -1,6 +1,6 @@
 name: drag_and_drop_flutter
 description: Support native drag and drop of text, files and directories in Flutter.
-version: 0.1.0
+version: 0.2.0
 homepage: https://github.com/Jjagg/drag_and_drop_flutter/tree/main/packages/drag_and_drop_flutter
 repository: https://github.com/Jjagg/drag_and_drop_flutter/tree/main/packages/drag_and_drop_flutter
 
@@ -11,13 +11,17 @@ environment:
 flutter:
   plugin:
     platforms:
+      android:
+        dartPluginClass: NullDragAndDropPlatform
+      ios:
+        dartPluginClass: NullDragAndDropPlatform
       web:
         default_package: drag_and_drop_flutter_web
 
 dependencies:
   cross_file: ^0.3.2
-  drag_and_drop_flutter_platform_interface: ^0.1.0
-  drag_and_drop_flutter_web: ^0.1.1
+  drag_and_drop_flutter_platform_interface: ^0.2.0
+  drag_and_drop_flutter_web: ^0.2.0
   flutter:
     sdk: flutter
   flutter_web_plugins:

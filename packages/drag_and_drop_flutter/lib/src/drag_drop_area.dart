@@ -8,6 +8,7 @@ import 'package:drag_and_drop_flutter_platform_interface/drag_and_drop_flutter_p
 ///
 /// This widgets tightens its constraints to the biggest size allowed.
 class DragDropArea extends StatelessWidget {
+  /// Create a drag and drop area.
   const DragDropArea({
     Key? key,
     this.dragData,

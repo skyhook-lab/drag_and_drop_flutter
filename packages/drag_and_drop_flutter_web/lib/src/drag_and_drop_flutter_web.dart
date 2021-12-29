@@ -105,7 +105,10 @@ class DropAreaState extends State<DropArea> {
   }
 
   void _clearSubscriptions() {
-    _subscriptions.forEach((s) => s.cancel());
+    for (var s in _subscriptions) {
+      s.cancel();
+    }
+
     _subscriptions.clear();
   }
 
@@ -233,11 +236,11 @@ String? _getDragTypeString(DragDropType? type) {
   }
 
   switch (type) {
-    case DragDropType.Copy:
+    case DragDropType.copy:
       return "copy";
-    case DragDropType.Link:
+    case DragDropType.link:
       return "link";
-    case DragDropType.Move:
+    case DragDropType.move:
       return "move";
   }
 }
@@ -245,11 +248,11 @@ String? _getDragTypeString(DragDropType? type) {
 DragDropType? _parseDragType(String? str) {
   switch (str) {
     case 'copy':
-      return DragDropType.Copy;
+      return DragDropType.copy;
     case 'link':
-      return DragDropType.Link;
+      return DragDropType.link;
     case 'move':
-      return DragDropType.Move;
+      return DragDropType.move;
   }
 
   return null;

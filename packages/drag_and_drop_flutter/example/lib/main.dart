@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
             items.where((item) => item.type.contains('image/')).isEmpty,
         // Set a link when dragging out.
         dragData: DragData(
-          type: DragDropType.Copy,
+          type: DragDropType.copy,
           items: const [
             DataTransferItem.data(
               type: 'text/uri-list',
