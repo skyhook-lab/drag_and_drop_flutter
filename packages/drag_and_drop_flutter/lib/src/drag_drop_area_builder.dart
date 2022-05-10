@@ -2,8 +2,8 @@ export 'package:drag_and_drop_flutter_platform_interface/drag_and_drop_flutter_p
 import 'package:drag_and_drop_flutter/drag_and_drop_flutter.dart';
 import 'package:flutter/widgets.dart';
 
-/// Widget builder for [DropAreaBuilder].
-typedef DropAreaWidgetBuilder = Widget Function(
+/// Widget builder for [DragDropAreaBuilder].
+typedef DragDropAreaWidgetBuilder = Widget Function(
   BuildContext context,
   bool isOver,
   Widget? child,
@@ -11,9 +11,9 @@ typedef DropAreaWidgetBuilder = Widget Function(
 
 /// A Widget that rebuilds when data is dragged over it, and provides a callback
 /// for handling dropped data.
-class DropAreaBuilder extends StatefulWidget {
-  /// Create a [DropAreaBuilder].
-  const DropAreaBuilder({
+class DragDropAreaBuilder extends StatefulWidget {
+  /// Create a [DragDropAreaBuilder].
+  const DragDropAreaBuilder({
     Key? key,
     required this.builder,
     this.canDrop,
@@ -23,7 +23,7 @@ class DropAreaBuilder extends StatefulWidget {
   }) : super(key: key);
 
   /// Build the child widget.
-  final DropAreaWidgetBuilder builder;
+  final DragDropAreaWidgetBuilder builder;
 
   /// See [DragDropArea.canDrop].
   final DataTransferTypeFilter? canDrop;
@@ -40,10 +40,10 @@ class DropAreaBuilder extends StatefulWidget {
   final Widget? child;
 
   @override
-  State<DropAreaBuilder> createState() => _DropAreaBuilderState();
+  State<DragDropAreaBuilder> createState() => _DragDropAreaBuilderState();
 }
 
-class _DropAreaBuilderState extends State<DropAreaBuilder> {
+class _DragDropAreaBuilderState extends State<DragDropAreaBuilder> {
   bool _dragOver = false;
 
   void setDragOver(bool value) {

@@ -2,9 +2,12 @@
 
 [![pub package](https://img.shields.io/pub/v/drag_and_drop_flutter.svg?color=blue)](https://pub.dev/packages/drag_and_drop_flutter)
 
-Support native drag and drop in Flutter.
+This plugin implements drag and drop functionality, along with some widgets to easily use drag and drop.
+Use [DragDropArea]() to receive callbacks when data is dragged over or dropped on the widget, or to
+set data when users drag *from* the widget.
 
 This is a [federated plugin][1]. It currently only has an [endorsed][2] implementation for web.
+For convenience, this plugin will work for any platform, but on platforms other than web it will do nothing.
 
 ## Usage
 
