@@ -37,6 +37,8 @@ abstract class DragAndDropFlutterPlatform extends PlatformInterface {
 
 /// An implementation of [DragAndDropFlutterPlatform] that does nothing.
 class NullDragAndDropPlatform extends DragAndDropFlutterPlatform {
+  static void registerWith() {}
+
   /// Returns [child] without handling drag and drop operations.
   @override
   Widget buildDropArea({
@@ -111,7 +113,7 @@ class DragData {
     this.readonly = false,
     this.type,
     List<DataTransferItem>? items,
-  })  : _items = items ?? (readonly ? const [] : []);
+  }) : _items = items ?? (readonly ? const [] : []);
 
   /// Create [DragData] with a key-value map of [String] data.
   ///
@@ -120,7 +122,7 @@ class DragData {
     this.readonly = false,
     this.type,
     Map<String, String>? items,
-  })  : _items = items?.entries
+  }) : _items = items?.entries
                 .map((e) => DataTransferItem.data(type: e.key, data: e.value))
                 .toList() ??
             (readonly ? const [] : []);
