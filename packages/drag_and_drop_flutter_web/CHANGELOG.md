@@ -1,3 +1,9 @@
+# 0.2.1
+
+- **Fixed**: Read file into memory because XFile does not directly support Blob links.
+- **Changed**: Use invisible html view for better performance.
+- **Changed**: Updated drag_and_drop_flutter_platform_interface.
+
 # 0.2.0
 
 - **Fixed**: Apply and fix lints.

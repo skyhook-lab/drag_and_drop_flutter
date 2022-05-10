@@ -20,15 +20,17 @@ class DragAndDropFlutterWebPlatform extends DragAndDropFlutterPlatform {
     DragAndDropFlutterPlatform.instance = DragAndDropFlutterWebPlatform();
 
     // ignore: undefined_prefixed_name, avoid_dynamic_calls
-    ui.platformViewRegistry.registerViewFactory('drag_and_drop_flutter',
-        (int viewId) {
-      final div = html.DivElement()
-        ..style.width = '100%'
-        ..style.height = '100%'
-        ..draggable = true;
-      _divs[viewId] = div;
-      return div;
-    });
+    ui.platformViewRegistry.registerViewFactory(
+      'drag_and_drop_flutter',
+      (int viewId) {
+        final div = html.DivElement()
+          ..style.width = '100%'
+          ..style.height = '100%';
+        _divs[viewId] = div;
+        return div;
+      },
+      isVisible: false,
+    );
   }
 
   @override
@@ -128,6 +130,7 @@ class DropAreaState extends State<DropArea> {
       _subscriptions.add(
         div.onDragStart.listen(
           (event) {
+            div.draggable = true;
             event.dataTransfer.dropEffect =
                 _getDragTypeString(widget.dragData.type);
             for (final item in widget.dragData.items.where((d) => !d.isFile)) {
