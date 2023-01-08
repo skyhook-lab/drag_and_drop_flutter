@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'dart:html' as html;
+import 'dart:html';
+import 'dart:typed_data';
 import 'dart:ui' as ui;
 
-import 'package:flutter/widgets.dart';
+import 'package:cross_file/cross_file.dart';
 import 'package:drag_and_drop_flutter_platform_interface/drag_and_drop_flutter_platform_interface.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
-
-import 'directory_entry.dart';
 
 Map<int, html.HtmlElement> _divs = {};
 
@@ -179,32 +180,15 @@ class DropAreaState extends State<DropArea> {
         event.preventDefault();
 
         final dataTransfer = event.dataTransfer;
-        final items = dataTransfer.items;
-        if (items != null) {
+        final List<File>? files = dataTransfer.files;
+        if (files != null) {
           final results = <DataTransferItem>[];
-          for (var i = 0; i < items.length!; i++) {
-            final item = items[i];
-
-            if (item.kind == 'file') {
-              // `getAsEntry` warns and fails in debug mode.
-              // See https://github.com/dart-lang/sdk/issues/47786.
-              final entry = await createEntry(item.getAsEntry());
-              final droppedFile = DataTransferItem.file(
-                type: item.type!,
-                file: entry,
-              );
-
-              if (entry != null) {
-                results.add(droppedFile);
-              }
-            } else {
-              final data = dataTransfer.getData(item.type!);
-              final droppedData = DataTransferItem.data(
-                type: item.type!,
-                data: data,
-              );
-              results.add(droppedData);
-            }
+          for (File file in files) {
+            final droppedData = DataTransferItem.file(
+              type: file.type,
+              file: await _itemToFile(file),
+            );
+            results.add(droppedData);
           }
 
           final effect = _parseDragType(event.dataTransfer.dropEffect);
@@ -215,17 +199,34 @@ class DropAreaState extends State<DropArea> {
     }));
   }
 
+  Future<FileEntry> _itemToFile(File file) async {
+    final reader = FileReader();
+    reader.readAsArrayBuffer(file);
+    await reader.onLoadEnd.first;
+    final bytes = reader.result as Uint8List;
+    final xFile = XFile.fromData(
+      bytes,
+      name: file.name,
+      lastModified: file.lastModifiedDate,
+      mimeType: file.type,
+      length: bytes.length,
+    );
+    return FileEntry(xFile);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
-      fit: StackFit.expand,
+      // fit: StackFit.expand,
       children: [
-        HtmlElementView(
-          viewType: 'drag_and_drop_flutter',
-          onPlatformViewCreated: (viewId) {
-            _div = _divs[viewId]!;
-            _attachToDiv();
-          },
+        Positioned.fill(
+          child: HtmlElementView(
+            viewType: 'drag_and_drop_flutter',
+            onPlatformViewCreated: (viewId) {
+              _div = _divs[viewId]!;
+              _attachToDiv();
+            },
+          ),
         ),
         widget.child,
       ],

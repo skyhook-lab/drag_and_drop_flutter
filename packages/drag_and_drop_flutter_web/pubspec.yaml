@@ -3,6 +3,7 @@ description: Web implementation of drag_and_drop_flutter.
 version: 0.2.1
 homepage: https://github.com/Jjagg/drag_and_drop_flutter/tree/main/packages/drag_and_drop_flutter_web
 repository: https://github.com/Jjagg/drag_and_drop_flutter/tree/main/packages/drag_and_drop_flutter_web
+publish_to: none
 
 environment:
   sdk: ">=2.14.0 <3.0.0"
@@ -18,7 +19,10 @@ flutter:
 
 dependencies:
   cross_file: ^0.3.2
-  drag_and_drop_flutter_platform_interface: ^0.2.1
+  dio: ^4.0.6
+#  drag_and_drop_flutter_platform_interface: ^0.2.1
+  drag_and_drop_flutter_platform_interface:
+    path: ../drag_and_drop_flutter_platform_interface
   flutter:
     sdk: flutter
   flutter_web_plugins:
