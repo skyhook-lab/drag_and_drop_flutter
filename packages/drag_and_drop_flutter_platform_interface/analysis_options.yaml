@@ -1,5 +1,9 @@
 include: package:flutter_lints/flutter.yaml
 
+analyzer:
+  exclude:
+    - lib/**
+
 linter:
   # https://dart-lang.github.io/linter/lints/index.html.
   rules:

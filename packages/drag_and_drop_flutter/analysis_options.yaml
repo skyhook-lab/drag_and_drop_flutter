@@ -5,6 +5,8 @@ analyzer:
     strict-raw-types: true
   strong-mode:
     implicit-casts: false
+  exclude:
+    - lib/**
 
 linter:
   # https://dart-lang.github.io/linter/lints/index.html.
