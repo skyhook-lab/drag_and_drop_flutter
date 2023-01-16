@@ -207,7 +207,7 @@ class DropAreaState extends State<DropArea> {
     final xFile = XFile.fromData(
       bytes,
       name: file.name,
-      lastModified: file.lastModifiedDate,
+      // lastModified: file.lastModifiedDate,
       mimeType: file.type,
       length: bytes.length,
     );
