@@ -6,8 +6,8 @@ repository: https://github.com/Jjagg/drag_and_drop_flutter/tree/main/packages/dr
 publish_to: none
 
 environment:
-  sdk: ">=2.14.0 <3.0.0"
-  flutter: ">=2.0.0"
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.0.0"
 
 flutter:
   plugin:
@@ -18,8 +18,8 @@ flutter:
         fileName: drag_and_drop_flutter_web.dart
 
 dependencies:
-  cross_file: ^0.3.2
-  dio: ^4.0.6
+  cross_file: ^0.3.4+1
+  dio: ^5.4.3+1
 #  drag_and_drop_flutter_platform_interface: ^0.2.1
   drag_and_drop_flutter_platform_interface:
     path: ../drag_and_drop_flutter_platform_interface
@@ -29,7 +29,7 @@ dependencies:
     sdk: flutter
 
 dev_dependencies:
-  flutter_lints: ^1.0.4
+  flutter_lints: ^3.0.2
   flutter_test:
     sdk: flutter
   integration_test:
