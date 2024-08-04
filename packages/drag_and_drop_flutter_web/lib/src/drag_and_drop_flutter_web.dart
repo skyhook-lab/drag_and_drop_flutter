@@ -184,11 +184,15 @@ class DropAreaState extends State<DropArea> {
         if (files != null) {
           final results = <DataTransferItem>[];
           for (File file in files) {
-            final droppedData = DataTransferItem.file(
-              type: file.type,
-              file: await _itemToFile(file),
-            );
-            results.add(droppedData);
+            try {
+              final droppedData = DataTransferItem.file(
+                type: file.type,
+                file: await _itemToFile(file),
+              );
+              results.add(droppedData);
+            } catch (e) {
+              print('Failed to read file: $e');
+            }
           }
 
           final effect = _parseDragType(event.dataTransfer.dropEffect);
@@ -203,7 +207,10 @@ class DropAreaState extends State<DropArea> {
     final reader = FileReader();
     reader.readAsArrayBuffer(file);
     await reader.onLoadEnd.first;
-    final bytes = reader.result as Uint8List;
+    final Uint8List? bytes = reader.result as Uint8List?;
+    if (bytes == null) {
+      throw Exception('Failed to read file');
+    }
     final xFile = XFile.fromData(
       bytes,
       name: file.name,
