@@ -190,8 +190,8 @@ class DropAreaState extends State<DropArea> {
                 file: await _itemToFile(file),
               );
               results.add(droppedData);
-            } catch (e) {
-              print('Failed to read file: $e');
+            } catch (e, s) {
+              print('Failed to read file: $e\n$s');
             }
           }
 
