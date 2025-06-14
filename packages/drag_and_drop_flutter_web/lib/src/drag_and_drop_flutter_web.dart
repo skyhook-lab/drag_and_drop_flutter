@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:html' as html;
 import 'dart:html';
 import 'dart:typed_data';
-import 'dart:ui' as ui;
+import 'dart:ui_web' as ui;
 
 import 'package:cross_file/cross_file.dart';
 import 'package:drag_and_drop_flutter_platform_interface/drag_and_drop_flutter_platform_interface.dart';
